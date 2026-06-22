@@ -20,7 +20,7 @@ runs:
 
     - name: Create requirements.txt
       run: echo "selenium" > requirements.txt
-      shell: bash 
+      shell: bash
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -60,8 +60,9 @@ runs:
         method: POST
         data: '{"link": "${{ inputs.gdrive_link }}"}'
         files: '{"file": "resume.pdf"}'
+        timeout: 600000 # 10 minutes
 
-    - if: steps.drive_upload.outcome == 'success' 
+    - if: steps.drive_upload.outcome == 'success'
       run: echo ${{ steps.drive_upload.outputs.response }}
       shell: bash
 
