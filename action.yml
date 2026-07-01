@@ -12,60 +12,40 @@ inputs:
   gdrive_link:
     description: Google drive link with edit permission
   gdrive_service_account_key:
-    description: Service account JSON key string for Google Drive access
-    required: false
+    description: JSON credentials for the Google Drive service account
 
 runs:
   using: 'composite'
   steps:
     - name: Checkout repo
-      uses: actions/checkout@v4
-
-    - name: Create requirements.txt
-      run: |
-        echo "selenium" > requirements.txt
-        echo "google-api-python-client" >> requirements.txt
-        echo "google-auth" >> requirements.txt
-      shell: bash 
+      uses: actions/checkout@v7
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: 3.x
         cache: 'pip'
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
       shell: bash
+      run: pip install -q -r "${GITHUB_ACTION_PATH}/requirements.txt"
 
     - name: Run Selenium script
       id: script
-      run: python "${GITHUB_ACTION_PATH}/selenium_script.py" "${{ inputs.overleaf_url }}"
+      run: python "${GITHUB_ACTION_PATH}/download_from_overleaf.py" "${{ inputs.overleaf_url }}"
       shell: bash
 
     - name: Commit the PDF file
       id: set-output
       if: steps.script.outputs.skip != 'True'
       run: |
-        # 1. Temporarily back up the newly compiled Overleaf resume files
-        cp resume.pdf temp_resume.pdf
-        cp resume.tex temp_resume.tex
-
-        # 2. Reset the local repository to match the latest remote main commit
-        git fetch origin main
-        git reset --hard FETCH_HEAD
-
-        # 3. Restore the new Overleaf files (overwriting the older versions)
-        mv temp_resume.pdf resume.pdf
-        mv temp_resume.tex resume.tex
-
-        # 4. Configure Git and commit the changes
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --global user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git config user.name "github-actions[bot]"
 
         git add resume.tex resume.pdf
-        git commit -m "Resume updated"
-        git push origin HEAD:main
+        git commit -m "Resume updated" -q
+        git push -q && \
+        echo "Upload to github successful 🎉"
       env:
         GITHUB_TOKEN: '${{ inputs.github_token }}'
       shell: bash
