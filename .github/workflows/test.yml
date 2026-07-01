@@ -1,7 +1,6 @@
 name: Test
 
-on:
-  workflow_dispatch:    # For manual trigger
+on: [workflow_dispatch, pull_request]
 
 permissions:
   contents: write
@@ -13,9 +12,7 @@ jobs:
       - uses: actions/checkout@main
       - uses: ./ # Uses action.yml in the root directory
         with:
-          overleaf_url: ${{ secrets.OVERLEAF_URL }}
-          gdrive_link: ${{ secrets.GDRIVE_LINK }}
-          gdrive_service_account_key: ${{ secrets.GDRIVE_SERVICE_ACCOUNT }}
+          overleaf_url: ${{ vars.OVERLEAF_URL }}
+          gdrive_link: ${{ vars.GDRIVE_LINK }}
+          gdrive_service_account_key: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-
