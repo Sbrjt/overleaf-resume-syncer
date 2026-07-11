@@ -20,6 +20,10 @@ runs:
     - name: Checkout repo
       uses: actions/checkout@v7
 
+    - name: Copy requirements.txt
+      shell: bash
+      run: cp "$GITHUB_ACTION_PATH/requirements.txt" "$GITHUB_WORKSPACE/requirements.txt"
+
     - name: Set up Python
       uses: actions/setup-python@v6
       with:
