@@ -110,7 +110,11 @@ def save_latex_if_updated(latex, filename):
 
 
 # url = 'https://www.overleaf.com/read/nsgsskwncdmy#a859ac'
-url = sys.argv[1]
+url = os.environ.get("OVERLEAF_URL")
+
+if not url:
+    raise ValueError("OVERLEAF_URL is missing.")
+
 
 browser = Browser()
 browser.get(url)

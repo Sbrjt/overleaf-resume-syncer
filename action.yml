@@ -14,6 +14,21 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Validate Overleaf URL
+      run: |
+        if [[ -z "$OVERLEAF_URL" ]]; then
+          echo "::error::overleaf_url is missing"
+          exit 1
+        fi
+
+        if [[ ! "$OVERLEAF_URL" =~ ^https://www\.overleaf\.com/read/[^/]+$ ]]; then
+          echo "::error::Invalid Overleaf URL. Expected something like: https://www.overleaf.com/read/abcd1234"
+          exit 1
+        fi
+      shell: bash
+      env:
+        OVERLEAF_URL: ${{ inputs.overleaf_url }}
+
     - name: Checkout repo
       uses: actions/checkout@v7
 
@@ -22,7 +37,7 @@ runs:
       run: cp "$GITHUB_ACTION_PATH/requirements.txt" "$GITHUB_WORKSPACE/requirements.txt"
 
     - name: Set up Python
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@v7
       with:
         python-version: 3.x
         cache: 'pip'
@@ -33,11 +48,12 @@ runs:
 
     - name: Run Selenium script
       id: script
-      run: python "${GITHUB_ACTION_PATH}/download_from_overleaf.py" "${{ inputs.overleaf_url }}"
+      run: python "${GITHUB_ACTION_PATH}/download_from_overleaf.py"
+      env:
+        OVERLEAF_URL: ${{ inputs.overleaf_url  }}
       shell: bash
 
     - name: Commit the PDF file
-      id: set-output
       if: steps.script.outputs.skip != 'True'
       run: |
         git config user.email "github-actions[bot]@users.noreply.github.com"
