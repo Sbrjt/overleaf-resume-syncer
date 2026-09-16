@@ -4,6 +4,7 @@ import shutil
 import sys
 import time
 
+import github_action_utils as logger
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -84,7 +85,7 @@ class Browser(webdriver.Chrome):
 
         download_btn.click()
         time.sleep(5)  # Wait for the download to complete
-        print('Pdf downloaded 🎉')
+        logger.notice('Pdf downloaded 🎉')
 
         # download the pdf in a temp folder, move it to the root and then delete it
         pdf = os.listdir('temp')[0]
@@ -100,7 +101,7 @@ def save_latex_if_updated(latex, filename):
                 return False
 
     except FileNotFoundError:
-        print('First run 🏃‍♂️')
+        logger.notice('First run 🏃‍♂️')
 
     # if latex file is not found or if it has changed, write it and download pdf
     with open('resume.tex', 'w') as file:
@@ -128,11 +129,8 @@ except Exception as e:
 changes_detected = save_latex_if_updated(latex, 'resume.tex')
 
 if not changes_detected:
-    print('No changes detected ✅️')
-
-    # setting github env var: skip=True
-    with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-        fh.write('skip=True\n')
+    logger.notice('No changes detected ✅️')
+    logger.set_output("skip", "True")
 
     sys.exit(0)
 
@@ -140,5 +138,4 @@ browser.download_pdf()
 
 browser.quit()
 
-with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-    fh.write('skip=False\n')
+logger.set_output("skip", "False")

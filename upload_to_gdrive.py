@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 import os
 import re
+
+import github_action_utils as logger
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
@@ -29,7 +31,9 @@ def findId(link: str):
     match = re.search(r"/file/d/([^/]+)", link)
 
     if not match:
-        raise ValueError("Invalid Google Drive shared URL\nExpected format: https://drive.google.com/file/d/<FILE_ID>/view")
+        raise ValueError(
+            "Invalid Google Drive shared URL\nExpected format: https://drive.google.com/file/d/<FILE_ID>/view"
+        )
 
     return match.group(1)
 
@@ -53,7 +57,7 @@ file_id = findId(gdrive_link)
 
 try:
     new_file = updateFile(file_id, 'resume.pdf')
-    print("Upload to google drive successful 🎉")
+    logger.notice("Upload to google drive successful 🎉")
     # print(new_file)
 except Exception as e:
     raise RuntimeError(f"Failed to upload :(") from e
