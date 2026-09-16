@@ -15,4 +15,3 @@ jobs:
           overleaf_url: ${{ vars.OVERLEAF_URL }}
           gdrive_link: ${{ vars.GDRIVE_LINK }}
           gdrive_service_account_key: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_KEY }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}

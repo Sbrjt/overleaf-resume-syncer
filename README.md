@@ -1,3 +1,7 @@
+<a href="https://github.com/search?q=%22Sbrjt%2Foverleaf-resume-syncer%22+language%3Ayaml&type=code">
+  <img src="https://img.shields.io/github/search?query=%22Sbrjt/overleaf-resume-syncer%22&label=used%20by&logo=github">
+</a>
+
 Overleaf is a popular LaTeX editor used for writing resumes. But the free-tier plan lacks Git and cloud drive integration. So every time you update your resume, you have to manually download the latest pdf for sharing - which quickly becomes tedious.
 
 This GitHub action solves this by automatically fetching the latest pdf from overleaf and commits it to your GitHub repo, from where it can be easily hosted and shared.
@@ -22,10 +26,9 @@ jobs:
   get-pdf:
     runs-on: ubuntu-latest
     steps:
-      - uses: Sbrjt/overleaf-resume-syncer@main
+      - uses: Sbrjt/overleaf-resume-syncer@v2
         with:
           overleaf_url: 'https://www.overleaf.com/read/your-project-id' # Replace with your overleaf sharing link (not your project url!)
-          github_token: ${{ secrets.GITHUB_TOKEN }}
 
           # Optional:
           gdrive_link: ${{ vars.GDRIVE_LINK }}
@@ -77,7 +80,7 @@ How it works
 
 <br>
 
-This is a GitHub composite action, which can be imported as `Sbrjt/overleaf-resume-syncer@v1` in any other GitHub Action. (See `action.yml` file.) The action takes in 2 inputs: your overleaf url and a github token.
+This is a GitHub composite action, which can be imported as `Sbrjt/overleaf-resume-syncer` in any other GitHub Action. (See `action.yml` file.) The action takes in 2 inputs: your overleaf url and a github token.
 
 First, it checks out the repo, installs python and selenium, and runs a python script to fetch the pdf.
 
