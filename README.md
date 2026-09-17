@@ -40,6 +40,10 @@ jobs:
 Detailed Steps
 </summary>
 
+<br>
+  
+https://github.com/user-attachments/assets/05aab465-3b58-4e9c-b09d-d61f88d0e9fa
+
 ### Step 1: Get the Overleaf Share Link
 
 1. Open your project on Overleaf.
