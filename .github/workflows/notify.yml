@@ -1,0 +1,17 @@
+name: Trigger Tests on Test Branch
+on: push
+
+permissions:
+  actions: write
+
+jobs:
+  trigger-test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh workflow run test.yml --ref test
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+
+# This triggers the test workflow defined in the test branch whenever a push event occurs
+# See: https://stackoverflow.com/questions/66110223
