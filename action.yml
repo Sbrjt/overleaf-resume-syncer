@@ -1,7 +1,3 @@
-name: Auto-download resume from overleaf
-description: Fetches a resume pdf from an overleaf and commits it to the repository.
-author: sbrjt
-
 inputs:
   overleaf_url:
     required: true
@@ -53,17 +49,14 @@ runs:
         OVERLEAF_URL: ${{ inputs.overleaf_url  }}
       shell: bash
 
-    - name: Commit the PDF file
+    - name: Commit
       if: steps.script.outputs.skip != 'True'
-      run: |
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git config user.name "github-actions[bot]"
-
-        git add resume.tex resume.pdf
-        git commit -m "Resume updated" -q
-        git push -q && \
-        echo "Upload to github successful 🎉"
-      shell: bash
+      uses: stefanzweifel/git-auto-commit-action@v7
+      with:
+        commit_message: Resume updated
+        file_pattern: resume.tex resume.pdf
+        commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
+        after_push_hook: echo "::notice::Upload to GitHub successful 🎉"
 
     - name: Upload to google drive
       if: ${{ inputs.gdrive_link != '' && inputs.gdrive_service_account_key != '' && steps.script.outputs.skip != 'True'}}
@@ -73,6 +66,9 @@ runs:
         GDRIVE_SERVICE_ACCOUNT_KEY: ${{ inputs.gdrive_service_account_key }}
       shell: bash
 
+name: Auto-download resume from overleaf
+description: Fetches a resume pdf from an overleaf and commits it to the repository.
+author: sbrjt
 branding:
   icon: 'book'
   color: 'green'
