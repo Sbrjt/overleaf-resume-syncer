@@ -1,0 +1,252 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{fontawesome5}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+\usepackage{multicol}
+\usepackage{parskip}
+\usepackage{accsupp}
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+%\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.4in}
+\addtolength{\textheight}{5in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-5pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{0pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{3pt}}
+
+\newcommand{\seticon}[1]{\textcolor{Black}{\csname #1\endcsname}}
+
+\newcommand{\livelink}[1]{%
+    \href{#1}{%
+        \BeginAccSupp{method=plain,ActualText={Live}}
+        \faIcon{link}%
+        \EndAccSupp{}%
+    }%
+}
+
+\newcommand{\githublink}[1]{%
+    \href{#1}{%
+        \BeginAccSupp{method=plain,ActualText={GitHub}}
+        \faIcon{github}%
+        \EndAccSupp{}%
+    }%
+}
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+
+\begin{center}
+    \textbf{\Huge \scshape Shubhrajit Sadhukhan} \\ \vspace{8pt}
+    \footnotesize  \seticon{faPhone} \ \ 8240687299 \ \ \ \ \ \faEnvelope \ \  \href{mailto:shubhrajit.me@gmail.com}{shubhrajit.me@gmail.com} \ \ \ \ \ 
+    \faLinkedin \ \ \href{https://linkedin.com/in/shubhrajit-sadhukhan}{linkedin.com} \ \ \ \ \ 
+    \faGithub \ \ \href{https://github.com/Sbrjt}{github.com/Sbrjt} 	\ \ \ \ \ 
+    \faLink \ \ \href{https://sbrjt.github.io/}{Portfolio}
+\end{center}
+
+\begin{comment}
+\begin{minipage}[t]{0.48\textwidth}
+    \textbf{\Huge \scshape Shubhrajit \\ Sadhukhan} \\
+    
+    \href{https://sbrjt.github.io/}{sbrjt.github.io}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \raggedleft
+    \small
+    \faPhone\ 8240687299 \\
+    \faEnvelope \ \href{mailto:shubhrajit.2023ug3007@iiitranchi.ac.in}{shubhrajit.2023ug3007@iiitranchi.ac.in} \\
+    \faLinkedin \  \ \href{https://linkedin.com/in/shubhrajit-sadhukhan}{linkedin.com/in/shubhrajit-sadhukhan} \\
+    \faGithub \ \href{https://github.com/Sbrjt}{github.com/Sbrjt}
+\end{minipage}
+\end{comment}
+
+%-----------EDUCATION-----------
+%(with Specialization of Data Science and Artificial Intelligence)
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Indian Institute of Information Technology, Ranchi}{Ranchi, India}
+      {Bachelor of Technology in Computer Science and Engineering (DS \& AI); CGPA 8.79}{2023 -- 2027}
+    % \resumeSubheading
+    %   {Army Public School, Barrackpore}{Kolkata, India}
+    %   {CBSE 10+2}{2011 -- 2023}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+      \resumeSubheading
+      {Full Stack and AI Intern}{Dec 2025 -- Mar 2026}
+      {Loam AI}{Remote}
+      \resumeItemListStart
+        \resumeItem{Developed an algorithmic trading platform allowing traders to define custom trading strategies through a no-code visual rule builder}
+        \resumeItem{Integrated Zerodha Kite Connect API for order placement and automated trade execution}
+        % \resumeItem{Engineered a real-time data pipeline using Zerodha WebSockets to stream market prices, aggregate OHLC candles, and compute technical indicators}
+        \resumeItem{Conducted client demos, gathered feedback, and addressed edge cases}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Full-Stack Developer Intern}{Jul 2025 -- Nov 2025}
+      {Frondeur Labs}{Remote}
+      \resumeItemListStart
+        \resumeItem{Designed a modern, responsive dashboard using Next.js and shadcn, developing 15+ pages to enable users to launch and monitor cybersecurity assessments}
+         \resumeItem{Integrated backend APIs to trigger scans, track scan status and display assessment results}
+        \resumeItem{Crafted a usage dashboard to track remaining quotas, plan details and usage limits}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+    
+        \resumeProjectHeading
+          {\textbf{\underline{Scribbly}}  $|$ \githublink{https://github.com/Sbrjt/scribbly} \livelink{http://140.238.250.205/} $|$  \emph{Next.js, Fastify, AWS}}{2026}
+          \resumeItemListStart
+            \resumeItem{Built a minimal blogging platform using microservices architecture with Next.js and Fastify}
+            \resumeItem{Implemented inter-service communication using RabbitMQ and used Redis for caching}
+            \resumeItem{Containerized services with Docker, deployed it on AWS using Terraform and GitHub Actions}
+          \resumeItemListEnd
+
+        \resumeProjectHeading
+          {\textbf{\underline{Leetcode Enhancer}}  $|$ \githublink{https://github.com/Sbrjt/leetcode-enhancer} \livelink{https://chromewebstore.google.com/detail/leetcode-enhancer/cpoclfijojgjiafnlgnhjalkaiabcjch}  $|$ \emph{WXT, React, Typescript}}{2026}
+          \resumeItemListStart
+            \resumeItem{Built a cross-browser extension that injects UI enhancements into LeetCode}
+            \resumeItem{Implemented features including difficulty ratings, restored dislike counts, automatic code formatting, and Monaco Editor patches,  reaching 200+ users on Chrome Web Store}
+            \resumeItem{Implemented a Playwright E2E test suite to catch breaking changes when LeetCode updates its frontend}
+          \resumeItemListEnd
+          
+        \resumeProjectHeading
+          {\textbf{{\underline{College Predictor}}}  $|$ \githublink{https://github.com/Sbrjt/josaa-cutoffs} \livelink{https://sbrjt.github.io/josaa-cutoffs/} $|$  \emph{HTML, Bootstrap, JavaScript, SQLite, Web scraping}}{2024}
+          \resumeItemListStart
+            \resumeItem{Crafted a user-friendly website to display JEE cutoffs with custom filters}
+            \resumeItem{Scraped and processed 10,000+ entries from the official JoSAA website and optimized page load performance by caching assets with Workbox}
+            \resumeItem{Attracted $\sim$3000 users in 2024, with an average engagement time of 2 minutes (according to \href{https://datastudio.google.com/embed/u/0/reporting/712fda06-9be5-4dbd-a7ef-75c5f0022977/page/kIV1C}{Google Analytics})}
+          \resumeItemListEnd
+
+        % \resumeProjectHeading
+        %   {\textbf{\href{https://github.com/Sbrjt/overleaf-resume-syncer}{\href{}{\underline{Overleaf Resume Syncer}}}}  $|$ \livelink{https://github.com/marketplace/actions/auto-download-resume-from-overleaf}  $|$ \emph{Github Actions, Python, Selenium}}{2025}
+        %   \resumeItemListStart
+        %     \resumeItem{Built a Github Action to auto-sync resume pdf from Overleaf to GitHub and Google Drive}
+        %     \resumeItem{Published as a composite action on GitHub Marketplace enabling easy integration into other projects}
+        %     \resumeItem{It fetches the Overleaf pdf using Selenium and uploads files to Google Drive via a service account}
+        %   \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, JavaScript, HTML, CSS, SQL} \\
+     \textbf{Frontend}{: React, React Native, Next.js, Tailwind, Zustand, Shadcn} \\
+    \textbf{Backend}{: Express.js, FastAPI, GraphQL, Redis, RabbitMQ, MongoDB} \\
+    \textbf{Testing}{: Vitest, Pytest, Playwright, Selenium} \\
+     \textbf{Developer Tools}{: Git, Docker, GitHub Actions, Firebase, Grafana, AWS }
+    }}
+ \end{itemize}
+
+%-----------Extras-----------
+\section{Achievements}
+\begin{itemize}[leftmargin=0.15in, itemsep=-5pt]
+     \item \small{Participated in Smart India Hackathon 2024 and got shortlisted at college level}
+    \item \small{Earned a 3-star rating on \href{https://www.codechef.com/users/sbrjt}{CodeChef} and solved 400+ problems on \href{https://leetcode.com/u/user1484IW/}{LeetCode}}
+    \item \small{650+ reps on \href{https://stackoverflow.com/users/14313852/shub}{Stack Overflow} with active contributions}
+     \item \small{Open-source contributor to \href{https://github.com/BookCatKid/TablissNG/issues?q=author:sbrjt%20is:pr}{TablissNG}, a browser extension with 5K+ downloads.}
+\end{itemize}
+
+
+%-------------------------------------------
+\end{document}
