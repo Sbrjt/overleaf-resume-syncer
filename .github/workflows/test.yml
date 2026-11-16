@@ -8,7 +8,14 @@ jobs:
   test-action:
     runs-on: ubuntu-latest
     steps:
-      - uses: Sbrjt/overleaf-resume-syncer@main
+      - name: Install Chrome
+        run: |
+          wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt-get update
+          sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+
+      - name: Run action
+        uses: Sbrjt/overleaf-resume-syncer@main
         with:
           overleaf_url: ${{ vars.OVERLEAF_URL }}
           gdrive_link: ${{ vars.GDRIVE_LINK }}
