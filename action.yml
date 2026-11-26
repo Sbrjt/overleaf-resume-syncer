@@ -10,21 +10,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Validate Overleaf URL
-      run: |
-        if [[ -z "$OVERLEAF_URL" ]]; then
-          echo "::error::overleaf_url is missing"
-          exit 1
-        fi
-
-        if [[ ! "$OVERLEAF_URL" =~ ^https://www\.overleaf\.com/read/[^/]+$ ]]; then
-          echo "::error::Invalid Overleaf URL. Expected something like: https://www.overleaf.com/read/abcd1234"
-          exit 1
-        fi
-      shell: bash
-      env:
-        OVERLEAF_URL: ${{ inputs.overleaf_url }}
-
     - name: Checkout repo
       uses: actions/checkout@v7
 

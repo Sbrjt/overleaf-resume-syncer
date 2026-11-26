@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import shutil
 import sys
 import time
@@ -63,14 +64,14 @@ class Browser(webdriver.Chrome):
 
                         if latex == '':
                             print(payload)
-                            raise ValueError("Couldn't parse ⚠️")
+                            logger.fail("Couldn't parse ⚠️")
 
                         break
             except:
                 pass
 
         if latex == '':
-            raise ValueError('Unable to fetch ⚠️')
+            logger.fail('Unable to fetch ⚠️')
 
         return latex
 
@@ -114,7 +115,10 @@ def save_latex_if_updated(latex, filename):
 url = os.environ.get("OVERLEAF_URL")
 
 if not url:
-    raise ValueError("OVERLEAF_URL is missing.")
+    logger.fail("OVERLEAF_URL is missing.")
+
+if not re.match(r"^https://www\.overleaf\.com/read/[^/]+$", url):
+    logger.fail("Invalid Overleaf URL. Expected something like: https://www.overleaf.com/read/abcd1234")
 
 
 browser = Browser()

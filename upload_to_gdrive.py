@@ -15,7 +15,7 @@ sa_key = os.environ.get("GDRIVE_SERVICE_ACCOUNT_KEY")
 
 
 if not gdrive_link or not sa_key:
-    raise ValueError("GDRIVE_LINK or GDRIVE_SERVICE_ACCOUNT_KEY is missing.")
+    logger.fail("GDRIVE_LINK or GDRIVE_SERVICE_ACCOUNT_KEY is missing.")
 
 sa_info = json.loads(sa_key)
 
@@ -31,9 +31,7 @@ def findId(link: str):
     match = re.search(r"/file/d/([^/]+)", link)
 
     if not match:
-        raise ValueError(
-            "Invalid Google Drive shared URL\nExpected format: https://drive.google.com/file/d/<FILE_ID>/view"
-        )
+        logger.fail("Invalid Google Drive shared URL\nExpected format: https://drive.google.com/file/d/<FILE_ID>/view")
 
     return match.group(1)
 
@@ -59,5 +57,6 @@ try:
     new_file = updateFile(file_id, 'resume.pdf')
     logger.notice("Upload to google drive successful 🎉")
     # print(new_file)
-except Exception as e:
-    raise RuntimeError(f"Failed to upload :(") from e
+except Exception:
+    logger.error("Failed to upload :(")
+    raise
