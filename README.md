@@ -77,25 +77,6 @@ https://github.com/user-attachments/assets/05aab465-3b58-4e9c-b09d-d61f88d0e9fa
 
 </details>
 
-<details>
-<summary>
-How it works
-</summary>
-
-<br>
-
-This is a GitHub composite action, which can be imported as `Sbrjt/overleaf-resume-syncer` in any other GitHub Action. (See `action.yml` file.) The action takes in 2 inputs: your overleaf url and a github token.
-
-First, it checks out the repo, installs python and selenium, and runs a python script to fetch the pdf.
-
-`download_from_overleaf.py` get the latex code from overleaf by inspecting websockets frames and compares it with the existing `resume.tex`. If there are changes, it finds the download button and clicks it to get the new pdf. Otherwise, the action skips the next step.
-
-Then it uses the GitHub token provided in the inputs to push the updated code on your behalf (as GitHub Actions bot).
-
-The action is intended to run on a scheduled cron job (eg, daily or weekly).
-
-</details>
-
 #
 
 The most trivial solution might seem like having some latex previewer/builder and editing the `.tex` file locally. But TeX distributions like TeX-live are huge and can be a hassle to set up. More info [here](https://mark-wang.com/blog/2022/latex/).

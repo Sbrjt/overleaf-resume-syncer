@@ -7,7 +7,7 @@
 - Docker
 
 Use Medium size image when prompted: `catthehacker/ubuntu:act-latest` (~500MB)
-It's a minimal Ubuntu image, Chrome needs system libraries to run, so run `apt-get install google-chrome-stable` in order to use Selenium.
+It's a minimal Ubuntu image, Chrome needs system libraries to run, so we run `apt-get install google-chrome-stable` in [test.yml](.\test.yml) in order to use Selenium.
 
 ## Command
 
@@ -20,6 +20,10 @@ act \
 ```
 
 Comment out the commit step from `action.yml` while testing.
+
+You can also use the GitHub Local Actions extension.
+
+![](https://github.com/user-attachments/assets/df486986-814d-4268-ae3e-dd7f95a98604)
 
 ### What Each Flag Does
 
